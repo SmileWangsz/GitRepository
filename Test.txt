@@ -22,3 +22,5 @@ $ git commit -m "add 3 files."
 如果文件被修改之后，要重新提交，还要按照之前的步骤。
 
 要查看你之前修改文档记录 git log
+
+test commind 准备回退
