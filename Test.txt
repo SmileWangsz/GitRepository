@@ -1,5 +1,23 @@
-Git is a version control system.
-Git is free software.
+安装好git以后，输入下命令。
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
 
-Git is a distributed version control system.
-Git is so Power
+因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。
+
+Git 安装好以后，你可以选择一个目录，一旦选择好了目录以后，你就可以初始化这个目录了，一旦初始化之后，这个目录就是一个仓库了，以后目录下所有都会被管控。
+
+初始化一个Git仓库，使用git init命令。
+
+添加文件到Git仓库，分两步：
+
+使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+使用命令git commit -m <message>，完成。
+$ git add file1.txt
+$ git add file2.txt file3.txt
+$ git commit -m "add 3 files."
+
+要随时掌握工作区的状态，使用git status命令。
+
+如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+
+如果文件被修改之后，要重新提交，还要按照之前的步骤。
