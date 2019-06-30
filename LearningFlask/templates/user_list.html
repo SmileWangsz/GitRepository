@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block user %}
+    <ul>
+    {% for user in studentinfo %}
+    <li>
+        姓名：{{ user[1]}}&nbsp;&nbsp;年龄：{{ user[3]}}&nbsp;&nbsp;信息：{{ user[4]}}
+    </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
