@@ -1,8 +1,9 @@
-from flask import (Flask, request, send_from_directory,
+from flask import (Flask, send_from_directory,
                    render_template,redirect, url_for)
 import MySQLdb
+from config import db, app
+from modelsSQLAlchemy import BlogPost
 
-app = Flask(__name__)
 '''
 flask define route: path, string, int, float, uuid
 '''
@@ -32,22 +33,27 @@ def page_not_found(error):
 def send_file(path):
     return send_from_directory("download", path)
 
-DATABASE = {
-    'host':'localhost',#如果是远程数据库，此处为远程数据库的IP地址
-    'database':'pythontestsql',#这个地方是选择一个数据库进行连接
-    'user':'root',
-    'password':'123456',
-    'charset':'utf8'
-} #基本信息建立好以后呢，我们进行连接'
-db = MySQLdb.connect(**DATABASE)
-@app.route("/db/<name>")
-def hello_db(name):
+#这是第一种链接数据库的做法，因为还有一种ORM的链接方式
+@app.route("/db")
+def hello_db():
+    DATABASE = {
+        'host': 'localhost',  # 如果是远程数据库，此处为远程数据库的IP地址
+        'database': 'pythontestsql',  # 这个地方是选择一个数据库进行连接
+        'user': 'root',
+        'password': '123456',
+        'charset': 'utf8'
+    }  # 基本信息建立好以后呢，我们进行连接'
+    db = MySQLdb.connect(**DATABASE)
     cursor = db.cursor()
     sql = "select * from studentinfo"
     cursor.execute(sql)
     result = cursor.fetchall()
-    return render_template("user_list.html", studentinfo = result, User = name)
+    return render_template("user_list.html", studentinfo = result)
 
+@app.route('/blog')
+def list_Blog():
+    posts =db.session.query(BlogPost).all()
+    return render_template("display.html", posts = posts)
 
 if __name__ == '__main__':
     app.run()

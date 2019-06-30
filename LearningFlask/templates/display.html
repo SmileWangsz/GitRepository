@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block posts %}
+    <ul>
+{#    这里的post就是数据库对象存在了。#}
+    {% for post in posts %}
+        <li>
+            <strong>标题：</strong> {{ post.title}}<br>
+            <strong>内容：</strong> {{ post.description}}
+        </li><br>
+    {% endfor %}
+    </ul>
+{% endblock %}
