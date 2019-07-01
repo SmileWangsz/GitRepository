@@ -1,0 +1,23 @@
+﻿<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>please Login</h1><br>
+
+<form action="" method="post" name="login" role="form">
+    {{form.csrf_token}}
+    <p>
+        Please enter your Username:<br>
+        {{form.username(placeholder = "username")}}<br>
+        {% for error in form.errors.username %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}<br>
+        Please enter your Password:<br>
+        {{form.password(placeholder = "password")}}<br>
+        {% for error in form.errors.password %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}<br>
+    </p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+{% endblock %}
